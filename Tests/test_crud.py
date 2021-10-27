@@ -1,5 +1,5 @@
-from Domain.avioane import creeaza_rezervare, get_id
-from Logic.crud import adaugare, read, modificare,stergere
+from Domain.rezervare import creeaza_rezervare,get_id
+from Logic.crud import adaugare,modificare,read,stergere
 
 def get_data():
     return [
@@ -36,3 +36,4 @@ def test_stergere():
     assert r_deleted not in deleted
     assert r_deleted in rezervari
     assert len(deleted)==len(rezervari)-1
+

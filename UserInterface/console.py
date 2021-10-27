@@ -1,5 +1,6 @@
 from Logic.crud import adaugare,read,modificare,stergere
-from Domain.avioane import get_str,get_id,get_nume,get_pret,get_checkin,get_clasa,creeaza_rezervare
+from Domain.rezervare import get_str,get_id,get_nume,get_pret,get_checkin,get_clasa,creeaza_rezervare
+
 def show_menu():
     print('1.CRUD')
     print('2.Trecerea tuturor rezervarilor facute pe un nume citit la o clasa superioara')
@@ -56,6 +57,8 @@ def handle_crud(rezervari):
         else:
             print('Optiune invalida')
     return rezervari
+
+
 def run_UI(rezervari):
     while True:
         show_menu()

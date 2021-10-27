@@ -1,4 +1,4 @@
-from Domain.avioane import creeaza_rezervare, get_id
+from Domain.rezervare import creeaza_rezervare, get_id, get_nume,get_pret,get_checkin,get_clasa
 
 def adaugare(lst_rezervari, id_rezervare, nume, clasa, pret, checkin):
     '''
@@ -55,4 +55,6 @@ def stergere(lst_rezervari, id_rezervare):
         if get_id(rezervare)!=id_rezervare:
             new_rezervari.append(rezervare)
     return new_rezervari
+
+
 

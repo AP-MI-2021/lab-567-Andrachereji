@@ -16,6 +16,13 @@ def test_adaugare():
     new_rezervari=adaugare(rezervari, *params)
     assert len(new_rezervari)==len(rezervari)+1
     assert r_new in new_rezervari
+    params2=(100, 'r100', 'business', 1000, 'Nu')
+    try:
+        _ = adaugare(new_rezervari, *params2)
+        assert False
+    except ValueError:
+        assert True
+
 def test_read():
     rezervari = get_data()
     some_r=rezervari[2]
@@ -28,6 +35,12 @@ def test_modificare():
     assert r_update in updated
     assert r_update not in rezervari
     assert len(updated)==len(rezervari)
+    try:
+        r=creeaza_rezervare(111,'r111','economy',100,'Nu')
+        _=modificare(rezervari,r)
+        assert False
+    except ValueError:
+        assert True
 def test_stergere():
     rezervari = get_data()
     to_delete=3
@@ -36,4 +49,9 @@ def test_stergere():
     assert r_deleted not in deleted
     assert r_deleted in rezervari
     assert len(deleted)==len(rezervari)-1
+    try:
+        _=stergere(rezervari,111)
+        assert False
+    except ValueError:
+        assert True
 

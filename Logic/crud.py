@@ -11,6 +11,8 @@ def adaugare(lst_rezervari, id_rezervare, nume, clasa, pret, checkin):
     :param checkin:verificare checkin(Da/Nu)
     :return:lista de rezervari dupa adaugarea noi rezervari
     '''
+    if read(lst_rezervari,id_rezervare) is not None:
+        raise ValueError(f'Exista deja o rezervare cu id-ul {id_rezervare}')
     rezervare=creeaza_rezervare(id_rezervare, nume, clasa, pret, checkin)
     return lst_rezervari + [rezervare]
 def read(lst_rezervari, id_rezervare=None):
@@ -18,23 +20,28 @@ def read(lst_rezervari, id_rezervare=None):
     Citeste o rezervare din "baza de date"
     :param lst_rezervari:lista de rezervari
     :param id_rezervare:id-ul rezervarii dorite
-    :return:rezervarea cu id-ul id_rezervare sau toata lista de rezervari daca id_rezervare=None
+    :return:-rezervarea cu id-ul id_rezervare daca exista
+            -toata lista de rezervari daca id_rezervare=None
+            -None daca nu exista o rezervare cu id_rezervare
     '''
+    if not id_rezervare:
+        return lst_rezervari
     rezervare_cu_id=None
     for rezervare in lst_rezervari:
         if get_id(rezervare)==id_rezervare:
             rezervare_cu_id=rezervare
     if rezervare_cu_id:
         return rezervare_cu_id
-    else:
-        return lst_rezervari
+    return None
 def modificare(lst_rezervari, new_rezervare):
     '''
     Modifica o rezervare
     :param lst_rezervari:lista de rezervari
-    :param rezervare:rezervarea care se va modifica, id-ul trebiue sa fie unul existent!
+    :param new_rezervare:rezervarea care se va modifica, id-ul trebiue sa fie unul existent!
     :return:o lista cu rezervarea modificata
     '''
+    if read(lst_rezervari,get_id(new_rezervare)) is None:
+        raise ValueError(f'Nu exista o rezervare cu id-ul {get_id(new_rezervare)} pe care sa o modificam')
     new_rezervari=[]
     for rezervare in lst_rezervari:
         if get_id(rezervare)!=get_id(new_rezervare):
@@ -50,6 +57,8 @@ def stergere(lst_rezervari, id_rezervare):
     :param id_rezervare: id-ul rezervarii pe care dorim sa o stergem
     :return: o lista fara rezervarea cu id-ul id_rezervare
     '''
+    if read(lst_rezervari,id_rezervare) is None:
+        raise ValueError(f'Nu exista o rezervare cu id-ul {id_rezervare} pe care sa o stergem')
     new_rezervari=[]
     for rezervare in lst_rezervari:
         if get_id(rezervare)!=id_rezervare:

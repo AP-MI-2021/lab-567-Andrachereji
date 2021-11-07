@@ -15,10 +15,14 @@ def main():
     print("1. Pentru meniu vechi")
     print("2. Pentru meniu nou cmd")
     optiune = input("Alegeti tipul de meniu pe care vreti sa il folositi:")
-    if optiune == '1':
-        rezervari = run_ui(rezervari)
-    else:
-        rezervari = handle_comand_line(rezervari)
+    while True:
+        if optiune == '1':
+            rezervari = run_UI(rezervari)
+        elif optiune=='2':
+            rezervari = handle_comand_line(rezervari)
+        else:
+            print('optiune invalida')
+
 if __name__ == '__main__':
     test_adaugare()
     test_read()

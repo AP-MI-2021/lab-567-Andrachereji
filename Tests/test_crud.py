@@ -13,12 +13,12 @@ def test_adaugare():
     rezervari=get_data()
     params=(100, 'rnew', 'economy', 300, 'Da')
     r_new=creeaza_rezervare(*params)
-    new_rezervari=adaugare(rezervari, *params)
+    new_rezervari=adaugare(rezervari, *params,[],[])
     assert len(new_rezervari)==len(rezervari)+1
     assert r_new in new_rezervari
     params2=(100, 'r100', 'business', 1000, 'Nu')
     try:
-        _ = adaugare(new_rezervari, *params2)
+        _ = adaugare(new_rezervari, *params2,[],[])
         assert False
     except ValueError:
         assert True
@@ -31,13 +31,13 @@ def test_read():
 def test_modificare():
     rezervari = get_data()
     r_update=creeaza_rezervare(1,'r1','economy_plus',600,'Nu')
-    updated=modificare(rezervari, r_update)
+    updated=modificare(rezervari, r_update,[],[])
     assert r_update in updated
     assert r_update not in rezervari
     assert len(updated)==len(rezervari)
     try:
         r=creeaza_rezervare(111,'r111','economy',100,'Nu')
-        _=modificare(rezervari,r)
+        _=modificare(rezervari,r,[],[])
         assert False
     except ValueError:
         assert True
@@ -45,12 +45,12 @@ def test_stergere():
     rezervari = get_data()
     to_delete=3
     r_deleted=read(rezervari, to_delete)
-    deleted=stergere(rezervari, to_delete)
+    deleted=stergere(rezervari, to_delete,[],[])
     assert r_deleted not in deleted
     assert r_deleted in rezervari
     assert len(deleted)==len(rezervari)-1
     try:
-        _=stergere(rezervari,111)
+        _=stergere(rezervari,111,[],[])
         assert False
     except ValueError:
         assert True

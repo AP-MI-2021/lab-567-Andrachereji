@@ -7,7 +7,7 @@ def show_menu():
     print('comenzile sunt separate prin ";"')
     print('pentru iesire scrieti: i')
 
-def handle_comand_line(rezervari):
+def handle_comand_line(rezervari,undo_lst,redo_lst):
     while True:
         show_menu()
         optiune=input('Dati sirul de comenzi dorite:')
@@ -19,12 +19,12 @@ def handle_comand_line(rezervari):
                 date = elemente.split(',')
                 if date[0] == 'add':
                     try:
-                        rezervari=adaugare(rezervari, int(date[1]), date[2], date[3], float(date[4]), date[5])
+                        rezervari=adaugare(rezervari, int(date[1]), date[2], date[3], float(date[4]), date[5],undo_lst,redo_lst)
                     except ValueError as ve:
                         print("Eroare", ve)
                 elif date[0] == 'delete':
                     try:
-                        rezervari = stergere(rezervari, int(date[1]))
+                        rezervari = stergere(rezervari, int(date[1]),undo_lst,redo_lst)
                     except ValueError as ve:
                         print("Eroare", ve)
                 elif date[0]=='showall':

@@ -1,8 +1,9 @@
 from Logic.crud import adaugare,stergere
 from Domain.rezervare import get_str
 def show_menu():
-    print('pentru adaugarea unuei noi rezervari scrieti: add, id, nume, clasa, pret, checkin')
-    print('pentru stergerea unuei rezervari scrieti: delete, id')
+    print('pentru adaugarea unuei noi rezervari scrieti:')
+    print('add, id:un numar intreg, nume, clasa:economy/economy_plus/business, pret:un numar float, checkin:Da daca checkin-ul s-a facut sau Nu in caz contrar')
+    print('pentru stergerea unuei rezervari scrieti: delete, id:un numar intreg')
     print('pentru afisarea tuturor datelor scrieti: showall')
     print('comenzile sunt separate prin ";"')
     print('pentru iesire scrieti: i')
